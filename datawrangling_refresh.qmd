@@ -1,0 +1,25 @@
+---
+title: "Data Wrangling Refresher"
+format: html
+editor: visual
+---
+
+```{r}
+library(tidyverse)
+library(palmerpenguins)
+library(lubridate)
+library(kableExtra)
+```
+
+```{r}
+new_penguins <- penguins |> 
+  filter(island %in% c("Biscoe", "Dream"))|> 
+  select(-year, - sex) |> 
+  mutate(body_mass_kg = body_mass_g /1000) |> 
+  rename(location = island)
+```
+
+```{r}
+Ad_penguins <- penguins |> 
+  filter(island == Adelie)
+```

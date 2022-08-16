@@ -6,12 +6,55 @@ editor: visual
 
 ## Joins
 
+```{r}
+library(tidyverse)
+
+animals <- tibble::tribble(
+             ~location,   ~species,  ~maturity,
+              "lagoon",   "bobcat",    "adult",
+               "bluff",   "coyote", "juvenile",
+               "creek",      "fox",    "adult",
+                "oaks", "squirrel", "juvenile",
+               "bluff",   "bobcat",    "adult"
+             )
+sites <- tibble::tribble(
+           ~location,      ~full_site_name, ~jurisdiction,
+             "beach",       "Goleta Beach",     "SB City",
+            "lagoon",        "UCSB Lagoon",        "UCSB",
+             "bluff",       "Ellwood Mesa",     "SB City",
+              "oaks", "Fremont Campground",        "USFS"
+           )
+sites2 <- sites |> 
+  rename(loc = location)
+```
+
 ### Full Join
+
+```{r}
+full_join_example <- full_join(animals, sites, by = "location")
+full_join_ex2 <- full_join(animals, sites2, by = c("location" = "loc"))
+```
 
 ### Left Join
 
+```{r}
+left_join_example <- left_join(animals, sites, by = "location")
+```
+
 ### Inner Join
 
-### Semi Join
+```{r}
+inner_join_example <- inner_join(animals, sites, by = "location")
+```
 
-### Anti Join
+### Semi Join: Filtering join
+
+```{r}
+semi_join_example <- semi_join(animals, sites, by = "location")
+```
+
+### Anti Join: Filtering join
+
+```{r}
+anti_join_example <- anti_join(animals, sites, by = "location")
+```
