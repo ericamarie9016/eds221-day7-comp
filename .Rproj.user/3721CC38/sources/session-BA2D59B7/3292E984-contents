@@ -20,7 +20,5 @@ new_penguins <- penguins |>
 ```
 
 ```{r}
-Ad_penguins <- penguins |> 
-  filter(island == Adelie) |> 
-  
+
 ```
