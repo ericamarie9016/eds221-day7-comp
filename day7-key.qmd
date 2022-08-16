@@ -58,3 +58,53 @@ semi_join_example <- semi_join(animals, sites, by = "location")
 ```{r}
 anti_join_example <- anti_join(animals, sites, by = "location")
 ```
+
+## Dates and Times with `lubridate`
+
+```{r}
+my_date <- "03-15-1998"
+class(my_date)
+lubridate::mdy(my_date)
+
+my_date <- "11/7/2004"
+lubridate::dmy(my_date)
+
+my_date <- "08-Jun-1974"
+lubridate::dmy(my_date)
+
+my_date <- "19610518"
+my_real_date <- lubridate::ymd(my_date)
+class(my_date)
+class(my_real_date)
+```
+
+Can this fail? Yes! Will not parse impossible dates
+
+```{r}
+time <- "2020-08-12 11:18"
+time <- lubridate::ymd_hm(time)
+class(time)
+```
+
+```{r}
+with_tz(time, "Asia/Jakarta")
+
+
+```
+
+Try to pull apart components
+
+```{r}
+
+my_time <- lubridate::ymd_hms(time)
+year(my_time)
+second(my_time)
+```
+
+```{r}
+teddy_bday <- lubridate::ymd("20170615")
+wday(teddy_bday, label = TRUE)
+
+wday(lubridate::ymd("19900707"), label = TRUE)
+week(lubridate::ymd("19900707"))
+```
